@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>제로초 js 초급강좌 2-1 별찍기(반복문 연습)</p>
+    <script>
+        for (var star = 1; star <= 5; star += 1 ){
+            console.log('*'.repeat(star));
+        }
+        for (var star = 5; star >= 1; star -= 1) {
+            console.log('*'.repeat(star));
+        }
+        for (var star = 10; star >= 1; star -= 2) {
+            console.log('*'.repeat(star));
+        }
+        for (var i = 1; i <= 16; i *= 2){
+            console.log('*'.repeat(i));
+        }
+
+        // for(var i = 5; i >= 1; i -= 2){
+        //     for( var u ='\u00A0';)
+        //     console.log( ''.repeat(u) + '*'.repeat(i));
+        // }
+        for (var star = 1; star <= 5; star += 1) {
+            console.log('*'.repeat(star) +1)
+        }
+
+        // for (var p = 0; p <= 5; p += 1){
+        //     var star = 5; star >= 1; star -= 1;
+        //     console.log(' '.repeat(p) + '*'.repeat(star))
+        // }
+
+        // for ( var star = 5; star >= 1; star -= 1 ){
+        //      console.log(' '.repeat(5 - star) + '*'.repeat(star))
+        // }
+
+        for (var star = 9; star >= 1; star -= 2) {
+            console.log(' '.repeat( (9 - star)/2 ) + '*'.repeat(star))
+        }
+    </script>
+    <p>제로초 js 초급강좌 2-5 구구단 구현</p>
+    <script>
+        var num = Math.ceil(Math.random() * 9);
+        var num2 = Math.ceil(Math.random() * 9 );
+        var result = num * num2;
+        var answer = prompt(num + '곱하기' + num2 + '는?');
+
+        if (result === parseInt(answer) ) {
+            alert('딩동댕');
+        } else {
+            alert('땡');
+        }
+
+        while(true){
+            var num = Math.ceil(Math.random() * 9);
+            var num2 = Math.ceil(Math.random() * 9 );
+            var result = num * num2;
+            while(true){
+                var answer = prompt(String(num) + '곱하기' + String(num2) + '는?');
+                if (result === Number(answer) ) {
+                    alert('딩동댕');
+                } else {
+                    alert('땡');
+                }
+            }
+        }
+    </script>
+</body>
+</html>
