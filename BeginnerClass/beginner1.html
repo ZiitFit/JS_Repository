@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>제로초 js 초급강좌 1-13 반복문</p>
+    <script>
+        var a = 0;
+        while ( a < 5 ) {
+            console.log('good');
+            a = a + 3;
+        };
+
+        for ( var a = 0; a < 5; a = a + 3 ) {
+            console.log('goodgood')
+        }
+
+        var b = 3;
+        if ( b < 5 ) {
+            console.log('굿');
+            b = b + 2 ;
+        } else {
+            console.log('나빠')
+        }
+    </script>
+    <p>제로초 js 초급강좌 1-14 끝말잇기 구현</p>
+    <script>
+        var word = '제로초';
+        while (true) {
+            var answer = prompt(word);
+            if ( word[word.length - 1] === answer[0] ) {
+                alert('딩동댕');
+                word = answer;
+            } else {
+                alert('땡');
+            }
+        }
+
+        for ( var word = '제로초초'; true; ) {
+            var answer = prompt(word);
+            if ( word[word.length - 1] === answer[0] ) {
+                alert('딩동댕');
+                word = answer;
+            } else {
+                alert('땡');
+            }
+        }
+
+        var word = '안녕하세요';
+        var answer = prompt(word);
+        if (word[word.length -1] === answer[0]){
+            alert('good')
+        } else {
+            alert('bad')
+        }
+
+
+        for ( var word = '안녕하세요'; true; ) {
+            var answer = prompt(word);
+            if(word[word.length -1] === answer[0]){
+                alert('잘해따')
+            } else {
+                alert('망해따')
+            }
+        }
+    </script>
+</body>
+</html>
