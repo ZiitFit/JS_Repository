@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    td {border: 1px solid #333;width:50px;height:50px;}
+  </style>
+</head>
+<body>
+  <!-- <table>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+      </tr>
+  </table> -->
+
+  <script>
+    var body = document.body;
+    var table = document.createElement('table')
+    var box = [];
+    for (var i = 0; i < 3; i += 1) {
+      var line = document.createElement('tr');
+      box.push([]);
+      for (var j = 0; j < 3; j += 1) {
+        var td = document.createElement('td')
+        box[i].push(td)
+        line.appendChild(td)
+      }
+      table.appendChild(line)
+    }
+    body.appendChild(table);
+    console.log(box)
+
+
+  </script>
+</body>
+</html>
