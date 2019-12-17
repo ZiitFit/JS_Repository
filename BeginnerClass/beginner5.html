@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-    td {border: 1px solid #333;width:50px;height:50px;}
+    td {border: 1px solid #333;width:50px;height:50px;text-align:center;font-weight:700;font-size:35px}
   </style>
 </head>
 <body>
@@ -31,19 +31,97 @@
   <script>
     var body = document.body;
     var table = document.createElement('table')
+    var lines = [];
     var box = [];
+    var turn = 'X';
+    var result = document.createElement('div')
+
+    var callback = function(e){
+      console.log(e.target);
+      console.log(e.target.parentNode)
+      console.log(e.target.parentNode.parentNode)
+
+      var numline = lines.indexOf(e.target.parentNode);
+      console.log('몇줄', numline);
+      var numbox = box[numline].indexOf(e.target);
+      console.log('몇칸', numbox)
+
+      if (box[numline][numbox].textContent !== '') { // 칸이 이미 채워져 있는가?
+        console.log('빈 칸 아닙니다');
+      } else {
+        console.log('빈 칸입니다');
+        box[numline][numbox].textContent = turn;
+        // 세칸이 다 채워졌는가?
+        var full = false;
+        // 가로줄 검사
+        if(
+          box[numline][0].textContent === turn &&
+          box[numline][1].textContent === turn &&
+          box[numline][2].textContent === turn
+        ) {
+          full = true;
+        }
+        // 세로줄 검사
+        if(
+          box[0][numbox].textContent === turn &&
+          box[1][numbox].textContent === turn &&
+          box[2][numbox].textContent === turn
+        ) {
+          full = true;
+        }
+        // 대각선 검사
+        if(numline - numbox === 0) { // 대각선 검사 필요한경우
+          if (
+            box[0][0].textContent === turn &&
+            box[1][1].textContent === turn &&
+            box[2][2].textContent === turn
+          ) {
+            full = true;
+          }
+        }
+        if(Math.abs(numline - numbox) === 2) { // 대각선 검사 필요한경우
+          if (
+            box[0][2].textContent === turn &&
+            box[1][1].textContent === turn &&
+            box[2][0].textContent === turn
+          ) {
+            full = true;
+          }
+        }
+        // 다 찼으면
+        if(full) {
+          console.log(turn + '님이 승리!');
+          result.textContent = turn + '님이 승리!'
+          // 초기화
+          turn = 'X';
+          box.forEach(function(line) {
+            line.forEach(function(td){
+              td.textContent = '';
+            })
+          })
+        } else { // 다 안찼으면
+          if (turn === 'X') {
+            turn = 'O';
+          } else {
+            turn = 'X';
+          }
+        }
+      }
+    }
     for (var i = 0; i < 3; i += 1) {
       var line = document.createElement('tr');
+      lines.push(line)
       box.push([]);
       for (var j = 0; j < 3; j += 1) {
-        var td = document.createElement('td')
+        var td = document.createElement('td');
+        td.addEventListener('click', callback);
         box[i].push(td)
         line.appendChild(td)
       }
       table.appendChild(line)
     }
     body.appendChild(table);
-    console.log(box)
+    console.log('줄들', lines, '칸들', box)
 
 
   </script>
