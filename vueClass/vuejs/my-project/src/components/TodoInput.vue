@@ -7,15 +7,21 @@
 
 <script>
 export default {
-    data: function() {
+    data:function() {
         return {
-            newTodoItem: ""
+            newTodoItem:""
         }
     },
     methods: {
-        addTodo: function() {
-            localStorage.setItem(this.newTodoItem, this.newTodoItem);
-            this.clearInput();
+        addTodo:function() {
+            if (this.newTodoItem !== ''){
+                var obj = {
+                    completed: false,
+                    item: this.newTodoItem
+                }
+                localStorage.setItem(this.newTodoItem, JSON.stringify(obj));
+                this.clearInput();
+            }
         },
         clearInput: function() {
             this.newTodoItem = '';
@@ -24,6 +30,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

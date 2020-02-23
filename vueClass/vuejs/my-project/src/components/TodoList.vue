@@ -1,8 +1,10 @@
 <template>
     <div>
         <ul>
-            <li v-for="todoItem in todoItems" v-bind:key="todoItem">
-                {{ todoItem }}
+            <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item">
+                <span class="checkBtn" v-bind:class="{textCompleted:todoItem.completed}" v-on:click="toggleComplete(todoItem, index)">체크</span>
+                <span v-bind:class="{textCompleted:todoItem.completed}">{{ todoItem.item }}</span>
+                <span v-on:click="todoRemove(todoItem, index)">삭제</span>
             </li>
         </ul>
     </div>
@@ -11,15 +13,33 @@
 <script>
 export default {
     data: function() {
-        return {
-            todoItems: []
+        return{
+            todoItems:[]
         }
     },
-    created: function(){
-        if(localStorage.length > 0) {
-            for (var i = 0; i < localStorage.length ; i ++) {
-                if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-                    this.todoItems.push(localStorage.key(i))
+    methods: {
+        // eslint-disable-next-line no-unused-vars
+        todoRemove: function(todoItem, index) {
+            // eslint-disable-next-line no-console
+            console.log('remove');
+            // eslint-disable-next-line no-undef
+            localStorage.removeItem(todoItem);
+            this.todoItems.splice(index, 1)
+        },
+        // eslint-disable-next-line no-unused-vars
+        toggleComplete: function(todoItem, index) {
+            todoItem.completed = !todoItem.completed
+            localStorage.removeItem(todoItem.item)
+            localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
+        }
+    },
+    created: function() {
+        if (localStorage.length > 0 ){
+            for (var i = 0; i < localStorage.length; i++){
+                if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+                    // eslint-disable-next-line no-console
+                    // console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));
+                    this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
                 }
             }
         }
@@ -28,5 +48,11 @@ export default {
 </script>
 
 <style>
-
+.checkBtn{
+    border:1px solid #333;
+}
+.textCompleted{
+    color:#888;
+    text-decoration: line-through;
+}
 </style>
