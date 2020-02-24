@@ -4,7 +4,7 @@
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <TodoHeader/>
     <TodoInput/>
-    <TodoList/>
+    <TodoList v-bind:propsdata="todoItems"/>
     <TodoFooter/>
   </div>
 </template>
@@ -19,6 +19,20 @@ import TodoFooter from '@/components/TodoFooter.vue'
 
 export default {
   name: 'home',
+  data: function() {
+    return {
+      todoItems: []
+    }
+  },
+  created: function() {
+    if (localStorage.length > 0 ){
+      for (var i = 0; i < localStorage.length; i++){
+        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+        }
+      }
+    }
+  },
   components: {
     HelloWorld,
     TodoHeader,

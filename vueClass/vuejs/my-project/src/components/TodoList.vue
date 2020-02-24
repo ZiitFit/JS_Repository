@@ -1,7 +1,7 @@
 <template>
     <div>
         <ul>
-            <li v-for="(todoItem, index) in todoItems" v-bind:key="todoItem.item">
+            <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item">
                 <span class="checkBtn" v-bind:class="{textCompleted:todoItem.completed}" v-on:click="toggleComplete(todoItem, index)">체크</span>
                 <span v-bind:class="{textCompleted:todoItem.completed}">{{ todoItem.item }}</span>
                 <span v-on:click="todoRemove(todoItem, index)">삭제</span>
@@ -12,11 +12,7 @@
 
 <script>
 export default {
-    data: function() {
-        return{
-            todoItems:[]
-        }
-    },
+    props: ['propsdata'],
     methods: {
         // eslint-disable-next-line no-unused-vars
         todoRemove: function(todoItem, index) {
@@ -31,17 +27,6 @@ export default {
             todoItem.completed = !todoItem.completed
             localStorage.removeItem(todoItem.item)
             localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
-        }
-    },
-    created: function() {
-        if (localStorage.length > 0 ){
-            for (var i = 0; i < localStorage.length; i++){
-                if(localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-                    // eslint-disable-next-line no-console
-                    // console.log(JSON.parse(localStorage.getItem(localStorage.key(i))));
-                    this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
-                }
-            }
         }
     }
 }
