@@ -16,13 +16,11 @@ export default {
     methods: {
         // eslint-disable-next-line no-unused-vars
         removeTodo: function(todoItem, index) {
-            this.$emit('removeItem', todoItem, index)
+            this.$emit('removeItem', todoItem, index);
         },
         // eslint-disable-next-line no-unused-vars
         toggleComplete: function(todoItem, index) {
-            todoItem.completed = !todoItem.completed
-            localStorage.removeItem(todoItem.item)
-            localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
+            this.$emit('toggleItem', todoItem, index);
         }
     }
 }

@@ -4,7 +4,7 @@
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <TodoHeader/>
     <TodoInput v-on:addTodoItem="addOneItem"/>
-    <TodoList v-bind:propsdata="todoItems" v-on:removeItem="removeOneItem"/>
+    <TodoList v-bind:propsdata="todoItems" v-on:removeItem="removeOneItem" v-on:toggleItem="toggleOneItem"/>
     <TodoFooter/>
   </div>
 </template>
@@ -37,6 +37,11 @@ export default {
       // eslint-disable-next-line no-undef
       localStorage.removeItem(todoItem.item);
       this.todoItems.splice(index, 1)
+    },
+    toggleOneItem: function(todoItem, index) {
+      this.todoItems[index].completed = !this.todoItems[index].completed;
+      localStorage.removeItem(todoItem.item);
+      localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     }
   },
   created: function() {
