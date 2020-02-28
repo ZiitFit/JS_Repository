@@ -3,8 +3,8 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <TodoHeader/>
-    <TodoInput/>
-    <TodoList v-bind:propsdata="todoItems"/>
+    <TodoInput v-on:addTodoItem="addOneItem"/>
+    <TodoList v-bind:propsdata="todoItems" v-on:removeItem="removeOneItem"/>
     <TodoFooter/>
   </div>
 </template>
@@ -22,6 +22,21 @@ export default {
   data: function() {
     return {
       todoItems: []
+    }
+  },
+  methods: {
+    addOneItem: function(todoItem) {
+      var obj = {
+        completed: false,
+        item: todoItem
+      }
+      localStorage.setItem(todoItem, JSON.stringify(obj));
+      this.todoItems.push(obj);
+    },
+    removeOneItem: function(todoItem, index) {
+      // eslint-disable-next-line no-undef
+      localStorage.removeItem(todoItem.item);
+      this.todoItems.splice(index, 1)
     }
   },
   created: function() {

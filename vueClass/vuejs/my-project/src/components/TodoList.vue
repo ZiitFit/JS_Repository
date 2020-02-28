@@ -4,7 +4,7 @@
             <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem.item">
                 <span class="checkBtn" v-bind:class="{textCompleted:todoItem.completed}" v-on:click="toggleComplete(todoItem, index)">체크</span>
                 <span v-bind:class="{textCompleted:todoItem.completed}">{{ todoItem.item }}</span>
-                <span v-on:click="todoRemove(todoItem, index)">삭제</span>
+                <span v-on:click="removeTodo(todoItem, index)">삭제</span>
             </li>
         </ul>
     </div>
@@ -15,12 +15,8 @@ export default {
     props: ['propsdata'],
     methods: {
         // eslint-disable-next-line no-unused-vars
-        todoRemove: function(todoItem, index) {
-            // eslint-disable-next-line no-console
-            console.log('remove');
-            // eslint-disable-next-line no-undef
-            localStorage.removeItem(todoItem);
-            this.todoItems.splice(index, 1)
+        removeTodo: function(todoItem, index) {
+            this.$emit('removeItem', todoItem, index)
         },
         // eslint-disable-next-line no-unused-vars
         toggleComplete: function(todoItem, index) {
