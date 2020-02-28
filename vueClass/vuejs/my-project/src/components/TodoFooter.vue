@@ -16,9 +16,10 @@ export default {
 
 <style scoped>
   .btnfooter{
-    width:80%;
+    width:30%;
     height:50px;
     margin: 0 auto;
+    border-radius: 10px;
     line-height:50px;
     background:#eaeaea;
   }
