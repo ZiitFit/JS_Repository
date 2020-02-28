@@ -8,7 +8,7 @@
 export default {
   methods: {
     clearTodo: function() {
-      localStorage.clear();
+      this.$emit('removeAll')
     }
   }
 }
@@ -23,6 +23,7 @@ export default {
     background:#eaeaea;
   }
   .btnfooter span {
+    display: block;
     color:red;
   }
 </style>
