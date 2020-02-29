@@ -12,15 +12,16 @@
 
 <script>
 export default {
-    props: ['propsdata'],
     methods: {
         // eslint-disable-next-line no-unused-vars
         removeTodo(todoItem, index) {
-            this.$emit('removeItem', todoItem, index);
+            // this.$emit('removeItem', todoItem, index);
+            this.$store.commit('removeOneItem', {todoItem, index});
         },
         // eslint-disable-next-line no-unused-vars
         toggleComplete(todoItem, index) {
-            this.$emit('toggleItem', todoItem, index);
+            // this.$emit('toggleItem', todoItem, index);
+            this.$store.commit('toggleOneItem', {todoItem, index});
         }
     }
 }
