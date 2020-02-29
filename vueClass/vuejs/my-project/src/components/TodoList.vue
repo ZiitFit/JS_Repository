@@ -15,11 +15,11 @@ export default {
     props: ['propsdata'],
     methods: {
         // eslint-disable-next-line no-unused-vars
-        removeTodo: function(todoItem, index) {
+        removeTodo(todoItem, index) {
             this.$emit('removeItem', todoItem, index);
         },
         // eslint-disable-next-line no-unused-vars
-        toggleComplete: function(todoItem, index) {
+        toggleComplete(todoItem, index) {
             this.$emit('toggleItem', todoItem, index);
         }
     }
