@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as getters from './getters'
-import * as mutations from './mutations'
+// import * as getters from './getters'
+// import * as mutations from './mutations'
+import todoApp from './modules/todoApp'
 
 Vue.use(Vuex)
 
@@ -18,15 +19,18 @@ const storage = {
     }
     return arr;
   }
-};
+}; // ---> todoApp.js로 옮김
 
 export const store = new Vuex.Store({
-  state: {
-    // headerText: 'Todo it!'
-    todoItems: storage.fetch()
+  modules: {
+    todoApp
   },
-  getters: getters, // -> 축약 : getters,
-  mutations: mutations, // 축약 : mutations,
+  // state: {
+  //   // headerText: 'Todo it!'
+  //   todoItems: storage.fetch()
+  // },
+  // getters: getters, // -> 축약 : getters,
+  // mutations: mutations, // 축약 : mutations,
   // getters:{
   //   storedTodoItems(state){
   //     return state.todoItems;
@@ -53,7 +57,5 @@ export const store = new Vuex.Store({
   //   }
   // },
   actions: {
-  },
-  modules: {
   }
 })
