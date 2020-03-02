@@ -1,12 +1,17 @@
 <template>
   <div id="app">
-   <router-view></router-view>
+    <tool-bar></tool-bar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import ToolBar from './components/ToolBar'
 
 export default {
+  components: {
+    ToolBar,
+  }
   // methods: {
   //   fetchData() {
   //     console.log('hello');
@@ -16,12 +21,8 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  margin:0;
+  padding:0;
 }
 </style>
