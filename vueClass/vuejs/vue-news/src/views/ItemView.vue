@@ -1,12 +1,20 @@
 <template>
   <div>
-      item
+    <p v-for="item in items">{{ item.title }}</p>
   </div>
 </template>
 
 <script>
-export default {
 
+export default {
+  data() {
+    return {
+      items: []
+    }
+  },
+  created() {
+    
+  }
 }
 </script>
 
