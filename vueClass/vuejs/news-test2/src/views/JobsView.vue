@@ -1,11 +1,11 @@
 <template>
 	<div>
-		<p v-for="job in jobs" v-bind:key="job.id"> {{ job.title }} </p>
+		<p v-for="job in jobs" v-bind:key="job.id">{{ job.title }}</p>
 	</div>
 </template>
 
 <script>
-import { fetchJobsList } from '../api/index.js'
+import { fetchJobsList } from '../api/index.js';
 
 export default {
 	data() {
