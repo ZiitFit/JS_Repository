@@ -10,6 +10,12 @@ export const store = new Vuex.Store({
 		jobs: [],
 		ask: [],
 	},
+	// askview.vue -> ...mapState를 getters로 표현
+	getters: {
+		fetchedAsk(state) {
+			return state.ask;
+		}
+	},
 	mutations: {
 		SET_NEWS(state, news1) { // news1 이라는 인자로 넘어옴
 			state.news = news1;
@@ -32,10 +38,10 @@ export const store = new Vuex.Store({
 					console.log(error)
 				})
 		},
-		FETCH_JOBS(context){
+		FETCH_JOBS({ commit }){
 			fetchJobsList()
-				.then(response => {
-					context.commit('SET_JOBS', response.data)
+				.then(({ data }) => {
+					commit('SET_JOBS', data)
 				})
 				.catch(error => console.log(error))
 		},
