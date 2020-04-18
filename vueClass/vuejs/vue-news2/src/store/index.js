@@ -11,6 +11,8 @@ export const store = new Vuex.Store({
 		news: [],
 		jobs: [],
 		ask: [],
+		user: {},
+		item: {},
 	},
 	// askview.vue -> ...mapState를 getters로 표현
 	getters: {
