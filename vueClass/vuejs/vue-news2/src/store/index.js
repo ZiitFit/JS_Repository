@@ -13,15 +13,14 @@ export const store = new Vuex.Store({
 		ask: [],
 		user: {},
 		item: [],
-		show: {},
 	},
 	// askview.vue -> ...mapState를 getters로 표현
 	getters: {
 		fetchedAsk(state) {
 			return state.ask;
 		},
-		fetchedShow(state) {
-			return state.show;
+		fetchedItem(state) {
+			return state.item;
 		}
 	},
 	mutations,

@@ -4,7 +4,6 @@ import {
 	fetchAskList,
 	fetchUserInfo,
 	fetchItemAnswer,
-	fetchShowList
 } from '../api/index.js';
 
 export default {
@@ -42,11 +41,6 @@ export default {
 			.then(({ data }) => {
 				commit('SET_ITEM', data)
 			})
-			.catch(error => console.log(error))
-	},
-	FETCH_SHOW(context) {
-		fetchShowList()
-			.then(response => context.commit('SET_SHOW', response.data))
 			.catch(error => console.log(error))
 	}
 }

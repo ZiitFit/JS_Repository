@@ -5,7 +5,6 @@ import AskView from '../views/AskView.vue';
 import JobsView from '../views/JobsView.vue';
 import ItemView from '../views/ItemView.vue';
 import UserView from '../views/UserView.vue';
-import ShowView from '../views/ShowView.vue';
 
 Vue.use(VueRouter);
 
@@ -35,10 +34,6 @@ export const router = new VueRouter({
 		{
 			path: '/user/:id',
 			component: UserView,
-		},
-		{
-			path: '/show',
-			component: ShowView,
 		},
   ]
 })
