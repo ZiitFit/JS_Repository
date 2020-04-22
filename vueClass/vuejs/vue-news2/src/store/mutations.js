@@ -13,5 +13,8 @@ export default {
 	},
 	SET_ITEM(state, item) {
 		state.item = item;
+	},
+	SET_SHOW(state, show) {
+		state.show = show;
 	}
 }

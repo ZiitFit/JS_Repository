@@ -25,10 +25,16 @@ function fetchItemAnswer(useranswer) {
 	return axios.get(`${config.baseUrl}item/${useranswer}.json`);
 }
 
+function fetchShowList() {
+	return axios.get(config.baseUrl + 'show/1.json');
+	// return axios.get(`${config.baseUrl}show/1.json`)
+}
+
 export {
 	fetchNewsList,
 	fetchJobsList,
 	fetchAskList,
 	fetchUserInfo,
-	fetchItemAnswer
+	fetchItemAnswer,
+	fetchShowList
 }

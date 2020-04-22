@@ -9,7 +9,7 @@ export default {
 	computed: {
 		userAnswer() {
 			return this.$store.state.item;
-		}
+		},
 	},
 	created() {
 		console.log(this.$route.params.id)
