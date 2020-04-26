@@ -1,13 +1,26 @@
 <template>
 	<div>
-		<p v-for="ask in fetchedAsk" :key="ask.id">
-			<router-link :to="`item/${ask.id}`">
-				{{ ask.title }}
-			</router-link>
-			<span>
-				{{ ask.time_ago }} by {{ ask.user }}
-			</span>
-		</p>
+		<ul class="news-list">
+			<li v-for="ask in fetchedAsk" :key="ask.id" class="post">
+				<!-- 포인트 영역 -->
+				<div class="points">
+					{{ ask.points}}
+				</div>
+				<!-- 기타 정보영역 -->
+				<div>
+					<p class="news-title">
+						<router-link :to="`item/${ask.id}`">
+							{{ ask.title }}
+						</router-link>
+					</p>
+					<small class="link-text">
+						{{ ask.time_ago }} by
+						<!-- <router-link v-bind:to="'/user' + user.user">{{ user.user }}</router-link> -->
+						<router-link v-bind:to="`/user/${ask.user}`" class="link-text">{{ ask.user }}</router-link>
+					</small>
+				</div>
+			</li>
+		</ul>
 	</div>
 </template>
 
@@ -43,6 +56,29 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.news-list{
+	margin:0;
+	padding:0;
+}
+.post{
+	display:flex;
+	border-bottom:1px solid #bbb;
+	list-style:none;
+	align-items:center
+}
+.points{
+	display:flex;
+	width:80px;
+	height:60px;
+	align-items:center;
+	justify-content:center;
+	color:#42b883;
+}
+.news-title{
+	margin:0;
+}
+.link-text{
+	color:#828282;
+}
 </style>
