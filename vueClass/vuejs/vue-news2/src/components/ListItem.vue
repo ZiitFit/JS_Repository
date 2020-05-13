@@ -1,22 +1,30 @@
 <template>
 	<div>
 		<ul class="news-list">
-			<li v-for="(user, idx) in this.$store.state.news" :key="idx" class="post">
+			<li v-for="item in listItems" :key="item.id" class="post">
 				<!-- 포인트 영역 -->
 				<div class="points">
-					{{ user.points}}
+					{{ item.points || 0 }}
 				</div>
 				<!-- 기타 정보영역 -->
 				<div>
+					<!-- 타이틀 영역 -->
 					<p class="news-title">
-						<a v-bind:href="user.url">
-							{{ user.title }}
-						</a>
+						<template v-if="item.domain">
+							<a v-bind:href="item.url">
+								{{ item.title }}
+							</a>
+						</template>
+						<template v-else>
+							<router-link :to="`item/${item.id}`">
+								{{ item.title }}
+							</router-link>
+						</template>
 					</p>
 					<small class="link-text">
 						by
 						<!-- <router-link v-bind:to="'/user' + user.user">{{ user.user }}</router-link> -->
-						<router-link v-bind:to="`/user/${user.user}`" class="link-text">{{ user.user }}</router-link>
+						<router-link v-bind:to="`/user/${item.user}`" class="link-text">{{ item.user }}</router-link>
 					</small>
 				</div>
 			</li>
@@ -27,7 +35,31 @@
 <script>
 export default {
 	created() {
-		this.$store.dispatch('FETCH_NEWS');
+		// this.$store.dispatch('FETCH_NEWS');
+		console.log(this.$route.path === '/news');
+		const name = this.$route.name;
+		if (name === 'news') {
+			this.$store.dispatch('FETCH_NEWS');
+		} else if (name === 'ask') {
+			this.$store.dispatch('FETCH_ASK');
+		}
+		// jobs api 가 없어짐.. https://api.hnpwa.com/v0/jobs/1.json
+		// else if (name === 'jobs') {
+		// 	this.$store.dispatch('FETCH_JOBS');
+		// }
+	},
+	computed: {
+		listItems() {
+			const name = this.$route.name;
+			if (name === 'news') {
+				return this.$store.state.news;
+			} else if (name === 'ask') {
+				return this.$store.state.ask;
+			}
+			// else if (name === 'jobs') {
+			// 	return this.$store.state.jobs;
+			// }
+		}
 	}
 }
 </script>
